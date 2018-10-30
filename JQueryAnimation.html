@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <header> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  
+  <style>
+	#contenaire {
+		
+	}
+	.carre {
+		display: inline-block;
+		background-color: black;
+		margin:2px;
+		padding:2px;
+		height: 15px;
+		width: 15px;
+    }
+ </style>
+ </header>
+<body>
+ <div id="contenaire">
+  
+ </div>
+
+
+ <script>
+  // Créer des carreaux
+  for( var i = 0; i < 1200; i++) {
+   $('#contenaire').append('<div class="carre"></div>');
+  }
+   
+ // Plugin
+ (function($) {
+	$.fn.pop = function() { 
+	$(".carre").mouseover(function() {
+							$(this).clone().removeClass('.carre').appendTo('#contenaire').css({			
+									left : $(this).position().left,
+									top : $(this).position().top
+							}).css( "background-color", "red")
+							.css( "position", "absolute" )
+							.animate({
+								//opacity: '0.0',
+								left: '+=180px',
+								top: '-=500px',
+							}, 3000);
+							
+							$(this).animate({
+								opacity: '0.0'
+							});
+								
+						});
+						
+						
+	
+	return this; 
+	}; 
+ }(jQuery));
+ // Fin plugin
+ 
+ // relier le plugin aux elements
+ $('.carre').pop();
+ 
+
+ </script>
+</body>
+</html>
+
